@@ -1,0 +1,65 @@
+\usepackage[T1]{fontenc}
+\usepackage[sc]{mathpazo}
+\linespread{1.05}         % Palatino needs more leading (space between lines)
+
+\usepackage{graphicx, subfig, float, hyperref, moreverb, parskip, verbatim, amsmath, booktabs, setspace, amssymb, soul, url, alltt}
+
+\makeatletter
+        \let\ps@plain\ps@empty
+        \renewcommand\paragraph{%
+                \@startsection{paragraph}{4}{0mm}%
+                        {-\baselineskip}%
+                {.5\baselineskip}%
+                {\normalfont\normalsize\bfseries}}
+
+\makeatother
+
+\setlength{\parskip}{0.25em}
+\setlength{\parindent}{0em}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+\newenvironment{itemize*}%
+      {\begin{itemize}%
+        \setlength{\itemsep}{0pt}%
+        \setlength{\parskip}{0pt}}%
+      {\end{itemize}}
+
+%\setcounter{secnumdepth}{0}
+
+\makeatletter
+\def\s@btitle{\relax}
+\def\subtitle#1{\gdef\s@btitle{#1}}
+\def\@maketitle{%
+  \newpage
+  \null
+  \vskip 2em%
+  \begin{center}%
+  \let \footnote \thanks
+    {\LARGE \@title \par}%
+                \if\s@btitle\relax
+                \else\typeout{[subtitle]}%
+                        \vskip .5pc
+                        \begin{large}%
+                                \textsl{\s@btitle}%
+                                \par
+                        \end{large}%
+                \fi
+    \vskip 1.5em%
+    {\large
+      \lineskip .5em%
+      \begin{tabular}[t]{c}%
+        \@author
+      \end{tabular}\par}%
+    \vskip 1em%
+    {\large \@date}%
+  \end{center}%
+  \par
+  \vskip 1.5em}
+\makeatother
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+\newcommand{\superscript}[1]{\ensuremath{^{\textrm{#1}}}}
+\newcommand{\subscript}[1]{\ensuremath{_{\textrm{#1}}}}
