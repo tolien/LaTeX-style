@@ -1,0 +1,128 @@
+%%  Common macros for the course CSC363H1F, Fall 2010,
+%%  on the St. George Campus at the University of Toronto.
+%%
+%%  Copyright (c) 2009-2010 Francois Pitt <fpitt@cs.utoronto.ca>
+%%  last updated at 17:01 (EST) on Mon 17 Jan 2011
+%%
+%%  This work may be distributed and/or modified under the conditions of
+%%  the LaTeX Project Public License, either version 1.3 of this license
+%%  or (at your option) any later version.
+%%  The latest version of this license is in
+%%      http://www.latex-project.org/lppl.txt
+%%  and version 1.3 or later is part of all distributions of LaTeX
+%%  version 2003/12/01 or later.
+%%
+%%  This work has the LPPL maintenance status "author-maintained".
+%%
+%%  The Current Maintainer of this work is
+%%  Francois Pitt <fpitt@cs.utoronto.ca>.
+%%
+%%  This work consists of the file macros-363.tex.
+
+% Trick so that math symbols are bold when text is.
+\let\seiresfb\bfseries\def\bfseries{\boldmath\seiresfb}
+\let\seiresdm\mdseries\def\mdseries{\unboldmath\seiresdm}
+
+% Centered version of \llap and \rlap.
+\newcommand*{\clap}[1]{\hbox to 0pt{\hss#1\hss}}
+
+% Spacing macros with default argument.
+\newcommand*{\vstretch}[1][1]{\vspace*{\stretch{#1}}}
+\newcommand*{\hstretch}[1][1]{\hspace*{\stretch{#1}}}
+
+% Fonts and characters.
+\let\altemph\textsl
+\let\strong\textbf
+\let\code\texttt
+\let\const\textsf
+\let\latinabb\emph
+\newcommand*{\txtbksl} {\symbol{"5C}}% \
+\newcommand*{\txtcaret}{\symbol{"5E}}% ^
+\newcommand*{\txtunder}{\symbol{"5F}}% _
+\newcommand*{\txtlcurl}{\symbol{"7B}}% {
+\newcommand*{\txtrcurl}{\symbol{"7D}}% }
+\newcommand*{\txttilde}{\symbol{"7E}}% ~
+\newcommand*{\N}{\mathbb{N}}  % requires amssymb
+\newcommand*{\Z}{\mathbb{Z}}  % requires amssymb
+\newcommand*{\Q}{\mathbb{Q}}  % requires amssymb
+\newcommand*{\R}{\mathbb{R}}  % requires amssymb
+\newcommand*{\bigOh}{\mathcal{O}}
+
+% Abbreviations of latin phrases.
+\newcommand*{\ie}{\latinabb{i.e.}}
+\newcommand*{\eg}{\latinabb{e.g.}}
+\newcommand*{\etc}{\latinabb{etc}}
+\newcommand*{\vs}{\latinabb{vs}}
+
+% Redefined symbols from amssymb.
+\renewcommand*{\emptyset}{\varnothing}
+\renewcommand*{\iff}{\mathrel{\Leftrightarrow}}
+\renewcommand*{\implies}{\mathrel{\Rightarrow}}
+\renewcommand*{\ge}{\geqslant}
+\renewcommand*{\le}{\leqslant}
+
+% For algorithms.
+\let\proc\textsc
+\let\kw\textbf
+\let\var\textsl
+%\newcommand*{\eq}{\mathrel{==}}
+%\renewcommand*{\neq}{\mathrel{!\!=}}
+%\renewcommand*{\leq}{\mathrel{<=}}
+%\renewcommand*{\geq}{\mathrel{>=}}
+%\renewcommand*{\gets}{\mathrel{=}}
+%\newcommand*{\opgets}[1]{\mathrel{#1=}}
+%\newcommand*{\True}{\const{True}}
+%\newcommand*{\False}{\const{False}}
+%\newcommand*{\None}{\const{None}}
+%\newcommand*{\cmod}{\mathbin{\%}}
+
+% Math macros.
+\newcommand*{\comp}[1]{\overline{#1}}  % complement
+\newcommand*{\emptystr}{\varepsilon}  % empty string
+\newcommand*{\lequiv}{\mathrel{\ \Longleftrightarrow\ }}
+\newcommand*{\lxor}{\oplus}
+\newcommand*{\floor}[1]{\lfloor#1\rfloor}
+\newcommand*{\ceil}[1]{\lceil#1\rceil}
+
+% Like {itemize} but using less vertical space.
+\newenvironment*{points}
+ {\ifvmode\else\unskip\par\fi\begin{list}{$\bullet$}
+   {\setlength{\topsep}{.25ex plus .125ex minus .1825ex}
+    \setlength{\itemsep}{\topsep}\setlength{\parsep}{0ex}
+    \setlength{\leftmargin}{1.75em}\setlength{\labelsep}{.5em}
+    \setlength{\labelwidth}{1.75em}}\ignorespaces}
+ {\ifvmode\else\unskip\fi\end{list}\ignorespaces}
+
+% Checkboxes and checklists.
+\newcommand*{\cbox}[1]{{\fboxrule.125ex\fboxsep0ex
+    \framebox[2.75ex]{\rule[-.75ex]{0ex}{2.75ex}\smash{#1}}}}
+\newcommand*{\cmark}{\raisebox{.0625ex}{$\surd$\kern.125ex}}
+\newcommand*{\xmark}{\raisebox{-.1875ex}{\kern.0625ex{X}}}
+\newcommand*{\checkbox}{{\sf\cbox{}}}
+\newcommand*{\checkedbox}{{\sf\cbox{\cmark}}}
+\newcommand*{\markedbox}{{\sf\cbox{\xmark}}}
+\newenvironment{checklist}{\begin{list}{\checkbox}{}}{\end{list}}
+\newcommand*{\checkeditem}{\item[\checkedbox]}
+\newcommand*{\markeditem}{\item[\markedbox]}
+
+% 363-specific: fonts and symbols.
+\let\symb\mathord  % for TM symbols
+\let\lang\textsc  % for languages
+\let\class\textsl  % for complexity classes
+\newcommand*{\B}{{\mathord\sqcup}}  % blank symbol for TM's
+\newcommand*{\encode}[1]{{\left\langle#1\right\rangle}}  % for TM inputs
+\newcommand*{\mapred}{\mathrel{\le_m}}  % mapping reducibility
+\newcommand*{\polyred}{\mathrel{\le_p}}  % polytime reducibility
+\newcommand*{\TM}{_{\textsc{tm}}}  % subscript "TM"
+\newcommand*{\NTM}{_{\textsc{ntm}}}  % subscript "NTM"
+
+% 363-specific: standard complexity classes.
+\newcommand*{\co}{\class{co}}
+\renewcommand*{\L}{\class{L}}
+\renewcommand*{\P}{\class{P}}
+\newcommand*{\NP}{\class{NP}}
+\newcommand*{\PSPACE}{\class{PSPACE}}
+
+% 363-specific: standard languages.
+\newcommand*{\CNF}{\lang{CNF}}
+\newcommand*{\SAT}{\lang{SAT}}
